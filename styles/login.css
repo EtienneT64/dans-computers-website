@@ -10,7 +10,7 @@
 }
 
 .page-wrapper {
-  min-height: calc(100vh - 262px);
+  min-height: calc(100vh - 222px);
 }
 
 #form {
@@ -30,10 +30,15 @@
   margin-top: 10px;
   width: 100%;
   color: white;
-  background-color: rgb(41, 57, 194);
+  background-color: #007bff;;
   border: none;
   border-radius: 4px;
 }
+
+#form button:hover {
+	background-color: #0056b3;
+}
+
 
 .input-control {
   display: flex;
