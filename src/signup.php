@@ -1,5 +1,53 @@
 <?php
-include_once '/includes/dbh.inc.php';
+include_once './includes/dbh.inc.php';
+?>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	// Retrieve form data
+	$username = $_POST["username"];
+	$email = $_POST["email"];
+	$password = $_POST["password"];
+	$password2 = $_POST["password2"];
+
+	// Validation checks
+	$errors = array();
+
+	// Validate username
+	if (empty($username)) {
+		$errors[] = "Username is required.";
+	}
+
+	// Validate email
+	if (empty($email)) {
+		$errors[] = "Email is required.";
+	} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		$errors[] = "Invalid email format.";
+	}
+
+	// Validate password
+	if (empty($password)) {
+		$errors[] = "Password is required.";
+	} elseif (strlen($password) < 6) {
+		$errors[] = "Password must be at least 6 characters long.";
+	}
+
+	// Validate password confirmation
+	if (empty($password2)) {
+		$errors[] = "Please confirm your password.";
+	} elseif ($password !== $password2) {
+		$errors[] = "Passwords do not match.";
+	}
+
+	// If there are no errors, process the form
+	if (empty($errors)) {
+		// Process the form (e.g., save data to database)
+
+		// Redirect to a success page
+		header("/index.php");
+		exit();
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +99,7 @@ include_once '/includes/dbh.inc.php';
 
 	<div class="page-wrapper">
 		<div class="container">
-			<form id="form" action="/">
+			<form id="form" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
 				<h1>Sign-up</h1>
 				<div class="input-control">
 					<label for="username">Username</label>
