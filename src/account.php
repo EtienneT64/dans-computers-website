@@ -1,6 +1,25 @@
 <?php
 // Import the dbh.inc.php file
 require_once("connection.php");
+?>
+
+<?php
+if (isset($_SESSION['user_id'])) {
+	// User is logged in, display account details page
+	// You can fetch and display the user details here
+	echo "Welcome, " . $_SESSION['username'] . "!"; // Example: Display the username
+	// Display other account details or actions
+} else {
+	// User is not logged in, display the login form
+	// Your existing login form code can go here
+?>
+	<h1>Login</h1>
+	<!-- Login form code goes here -->
+<?php
+}
+?>
+
+<?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Retrieve form data
@@ -41,6 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if (password_verify($password, $hashedPassword)) {
 				// Password is correct, user is authenticated
 				// Redirect to a success page or perform further actions
+				// Set the session variables
+				$_SESSION['user_id'] = $row['user_id']; // Example: Store the user ID
+				$_SESSION['username'] = $row['username']; // Example: Store the username
+
 
 				// Example: Redirect to homepage
 				header("Location: /index.php");
