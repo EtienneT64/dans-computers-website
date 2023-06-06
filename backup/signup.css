@@ -1,0 +1,85 @@
+.container {
+	font-family: 'Oswald', sans-serif;
+	width: 400px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 20px;
+	margin-top: 100px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+	text-align: center;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	border-radius: 4px;
+}
+
+button {
+	background-color: #007bff;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	border-radius: 4px;
+	font-size: 16px;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+.page-wrapper {
+	min-height: calc(100vh - 222px);
+	display: flex;
+	flex-direction: column;
+}
+
+.input-control {
+	display: flex;
+	flex-direction: column;
+}
+
+.input-control input {
+	border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-size: 12px;
+	padding: 10px;
+	width: 100%;
+}
+
+.input-control input:focus {
+	outline: 0;
+}
+
+.input-control.success input {
+	border-color: #09c372;
+}
+
+.input-control.error input {
+	border-color: #ff3860;
+}
+
+.input-control.error {
+	color: #ff3960;
+	font-size: 9px;
+	height: 13px;
+}
+
+#form h1 {
+	display: flex;
+	justify-content: center;
+}

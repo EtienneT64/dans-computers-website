@@ -1,0 +1,59 @@
+/* Hero container styles */
+.hero {
+	background-color: #f2f6ff;
+	height: 50vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	text-align: center;
+	word-wrap: break-word;
+	font-family: 'Oswald', sans-serif;
+	color: black;
+}
+
+/* Text styles */
+.hero h1 {
+	font-size: 48px;
+	color: black;
+	margin-bottom: 20px;
+}
+
+.hero p {
+	font-size: 24px;
+	color: black;
+	margin-bottom: 40px;
+}
+
+.hero button {
+	padding: 12px 24px;
+	font-size: 18px;
+	color: #ffffff;
+	background-color: #007bff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.hero h3 {
+	font-size: 24px;
+	color: #000000;
+	margin-bottom: 40px;
+}
+
+.old-price {
+	text-decoration: line-through;
+}
+
+.sale-price {
+	color: red;
+	margin-left: 10px;
+}
+
+.hero_image {
+	aspect-ratio: 3/2;
+	height: auto;
+	width: 100%;
+	max-height: 400px;
+	max-width: 600px;
+	object-fit: contain;
+}

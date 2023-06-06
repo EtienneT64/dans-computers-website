@@ -1,0 +1,147 @@
+/* Reset default margin and padding */
+body,
+nav {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin-top: 60px;
+	background-color: #e5e7eb;
+}
+
+/* Set header background and height */
+.nav_header {
+	background-color: #fff;
+	border-bottom: 1px solid lightgrey;
+	height: 60px;
+	margin-bottom: 60px;
+	display: flex;
+	align-items: center;
+	padding: 0 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding-right: 10%;
+	padding-left: 10%;
+	z-index: 100;
+	font-family: 'Roboto', sans-serif;
+}
+
+/* Style logo */
+.header_img-logo {
+	height: 40px;
+}
+
+.header_svg-cart {
+	height: 40px;
+	margin-right: 20px;
+}
+
+/* Style navigation links */
+.nav_links {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.nav_links a {
+	margin: 0 10px;
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+	font-family: 'Roboto', sans-serif;
+	margin-right: 20px;
+}
+
+/* Style navigation actions */
+.nav_actions {
+	display: flex;
+	align-items: center;
+}
+
+.nav_actions a {
+	margin-left: 10px;
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+}
+
+/* .menu-dropdown {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+} */
+
+/* Responsive styles */
+/* Hide navigation links on desktop view */
+@media only screen and (min-width: 769px) {
+	.menu-dropdown {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.nav_links {
+		display: none;
+	}
+
+	.header_img-logo {
+		margin-right: auto;
+		margin-left: 10px;
+	}
+
+	.nav_header {
+		justify-content: space-between;
+		padding: 0 10px;
+	}
+
+	.menu-button {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+	}
+
+	.menu-icon {
+		width: 24px;
+		height: 2px;
+		background-color: #333;
+		margin-bottom: 4px;
+	}
+
+	.menu-dropdown {
+		display: none;
+		position: absolute;
+		top: 60px;
+		left: 0;
+		width: 100%;
+		background-color: #fff;
+		border-top: 1px solid #e5e7eb;
+		padding: 10px 0;
+	}
+
+	.menu-dropdown.open {
+		display: block;
+	}
+
+	.menu-dropdown ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	.menu-dropdown li {
+		padding: 10px 20px;
+	}
+
+	.menu-dropdown a {
+		text-decoration: none;
+		color: #333;
+		font-weight: bold;
+		font-family: 'Roboto', sans-serif;
+	}
+
+	.menu-dropdown a:hover {
+		text-decoration: underline;
+	}
+}
