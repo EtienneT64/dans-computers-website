@@ -6,5 +6,5 @@ session_start();
 session_destroy();
 
 // Redirect to the login page or any other appropriate page
-header("Location: /src/account");
+header("Location: /src/index.php");
 exit;
