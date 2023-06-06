@@ -1,4 +1,9 @@
 <?php
+session_start();
+?>
+
+
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Retrieve form data
 	$email = $_POST["email"];
@@ -37,6 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$hashedPassword = $row['Password'];
 			if (password_verify($password, $hashedPassword)) {
 				// Password is correct, user is authenticated
+
+				// Check if the user is an admin
+				if ($email === "admin@adminonly.com") {
+					$_SESSION["admin"] = true;
+				}
+
 				// Redirect to a success page or perform further actions
 				// Set the session variables
 				$_SESSION['UserID'] = $row['UserID']; // Example: Store the user ID
@@ -44,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 				// Example: Redirect to homepage
-				header("Location: /src/index.php");
+				header("Location: /includes/admin.php");
 				exit();
 			} else {
 				$errors[] = "Invalid email or password.";
