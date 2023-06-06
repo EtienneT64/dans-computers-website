@@ -1,5 +1,6 @@
 <?php
-include_once './includes/dbh.inc.php';
+// Import the dbh.inc.php file
+require_once("connection.php");
 ?>
 
 <?php
@@ -42,9 +43,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// If there are no errors, process the form
 	if (empty($errors)) {
 		// Process the form (e.g., save data to database)
+		// Hash the password
+		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+		// Save data to the database
+		$query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("sss", $username, $email, $hashedPassword);
+		$stmt->execute();
+
+		// Close the database connection
+		$stmt->close();
+		$conn->close();
 
 		// Redirect to a success page
-		header("/index.php");
+		header("Location: /index.php");
 		exit();
 	}
 }

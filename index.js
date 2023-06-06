@@ -40,33 +40,46 @@ const validateInputs = () => {
 	const passwordValue = password.value.trim();
 	const password2Value = password2.value.trim();
 
+	let isValid = true;
+
 	if (usernameValue === '') {
 		setError(username, 'Username is required');
+		isValid = false;
 	} else {
 		setSuccess(username);
 	}
 
 	if (emailValue === '') {
 		setError(email, 'Email is required');
+		isValid = false;
 	} else if (!isValidEmail(emailValue)) {
 		setError(email, 'Provide a valid email address');
+		isValid = false;
 	} else {
 		setSuccess(email);
 	}
 
 	if (passwordValue === '') {
 		setError(password, 'Password is required');
+		isValid = false;
 	} else if (passwordValue.length < 8) {
 		setError(password, 'Password must be at least 8 characters');
+		isValid = false;
 	} else {
 		setSuccess(password);
 	}
 
 	if (passwordValue === '') {
 		setError(password2, 'Please confirm your password');
+		isValid = false;
 	} else if (password2Value !== passwordValue) {
 		setError(password2, 'Passwords must match');
+		isValid = false;
 	} else {
 		setSuccess(password2);
+	}
+
+	if (isValid) {
+		form.submit();
 	}
 };
