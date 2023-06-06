@@ -1,16 +1,9 @@
-<!-- header.php -->
-<!-- header.php -->
-
-<!-- <head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<head>
 	<link rel="stylesheet" type="text/css" href="/styles/header.css" />
-</head> -->
+</head>
 
 <nav class="nav_header">
-	<a href="/index.php">
+	<a href="/src/index.php">
 		<img src="/images/logo.png" alt="Dans Computers Logo" class="header_img-logo" />
 	</a>
 
@@ -19,7 +12,7 @@
 	</div>
 
 	<div class="nav_links">
-		<a href="/index.php">Home</a>
+		<a href="/src/index.php">Home</a>
 		<a href="/src/sales.php">Sales</a>
 		<a href="/src/account.php">Account</a>
 	</div>
@@ -31,7 +24,7 @@
 
 	<div class="menu-dropdown">
 		<ul>
-			<li><a href="/index.php">Home</a></li>
+			<li><a href="/src/index.php">Home</a></li>
 			<li><a href="/src/sales.php">Sales</a></li>
 			<li><a href="/src/account.php">Account</a></li>
 		</ul>
