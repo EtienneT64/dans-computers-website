@@ -27,6 +27,9 @@
 			<div class="change-password-link">
 				<a href="#">Change Password</a>
 			</div>
+			<div class="logout-link">
+				<a href="/includes/logout.php">Logout</a>
+			</div>
 		</div>
 	</div>
 

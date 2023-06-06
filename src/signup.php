@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$conn->close();
 
 		// Redirect to a success page
-		header("Location: /index.php");
+		header("Location: /src/index.php");
 		exit();
 	}
 }
