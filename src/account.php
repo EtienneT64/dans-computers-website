@@ -1,3 +1,66 @@
+<?php
+// Import the dbh.inc.php file
+require_once("connection.php");
+?>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	// Retrieve form data
+	$email = $_POST["email"];
+	$password = $_POST["password"];
+
+	// Validation checks
+	$errors = array();
+
+	// Validate email
+	if (empty($email)) {
+		$errors[] = "Email is required.";
+	} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		$errors[] = "Invalid email format.";
+	}
+
+	// Validate password
+	if (empty($password)) {
+		$errors[] = "Password is required.";
+	}
+
+	// If there are no errors, process the form
+	if (empty($errors)) {
+		// Authenticate user against the database
+		// Assuming you have a users table in your database with email and hashed_password columns
+
+		// Prepare and execute the query to fetch the user by email
+		$query = "SELECT * FROM users WHERE email = ?";
+		$stmt = $conn->prepare($query);
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+		$result = $stmt->get_result();
+
+		// Check if the user exists and verify the password
+		if ($result->num_rows == 1) {
+			$row = $result->fetch_assoc();
+			$hashedPassword = $row['password'];
+			if (password_verify($password, $hashedPassword)) {
+				// Password is correct, user is authenticated
+				// Redirect to a success page or perform further actions
+
+				// Example: Redirect to homepage
+				header("Location: /index.php");
+				exit();
+			} else {
+				$errors[] = "Invalid email or password.";
+			}
+		} else {
+			$errors[] = "Invalid email or password.";
+		}
+
+		// Close the database connection
+		$conn->close();
+	}
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +71,7 @@
 
 	<link rel="stylesheet" type="text/css" href="/styles/header.css" />
 	<link rel="stylesheet" type="text/css" href="/styles/account.css" />
+	<link rel="stylesheet" type="text/css" href="/styles/login.css" />
 	<link rel="stylesheet" type="text/css" href="/styles/footer.css" />
 
 	<title>Dans Computers / Account</title>
@@ -45,17 +109,23 @@
 
 	<div class="page-wrapper">
 		<div class="container">
-			<h2>My Account</h2>
-			<div class="account-details">
-				<label for="name">Name:</label>
-				<p id="name">Larry Low</p>
+			<form id="form" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
+				<h1>Login</h1>
+				<div class="input-control">
+					<label for="email">Email</label>
+					<input type="text" id="email" name="email" placeholder="Your email" />
+					<div class="error"></div>
+				</div>
 
-				<label for="email">Email:</label>
-				<p id="email">larrylow@gmail.com</p>
-			</div>
-			<div class="change-password-link">
-				<a href="#">Change Password</a>
-			</div>
+				<div class="input-control">
+					<label for="password">Password</label>
+					<input type="password" id="password" name="password" placeholder="Your password" />
+					<div class="error"></div>
+				</div>
+
+				<button type="submit">Log In</button>
+			</form>
+
 		</div>
 	</div>
 
