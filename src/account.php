@@ -1,13 +1,11 @@
 <?php
 // Import the dbh.inc.php file
 require_once("connection.php");
-?>
 
-<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Retrieve form data
 	$email = $_POST["email"];
-	$password = $_POST["password"];
+	$password = isset($_POST["password"]) ? $_POST["password"] : '';
 
 	// Validation checks
 	$errors = array();
@@ -30,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		// Assuming you have a users table in your database with email and hashed_password columns
 
 		// Prepare and execute the query to fetch the user by email
-		$query = "SELECT * FROM users WHERE email = ?";
+		$query = "SELECT * FROM users WHERE Email = ?";
 		$stmt = $conn->prepare($query);
 		$stmt->bind_param("s", $email);
 		$stmt->execute();
@@ -39,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		// Check if the user exists and verify the password
 		if ($result->num_rows == 1) {
 			$row = $result->fetch_assoc();
-			$hashedPassword = $row['password'];
+			$hashedPassword = $row['Password'];
 			if (password_verify($password, $hashedPassword)) {
 				// Password is correct, user is authenticated
 				// Redirect to a success page or perform further actions
@@ -59,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -114,18 +111,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<div class="input-control">
 					<label for="email">Email</label>
 					<input type="text" id="email" name="email" placeholder="Your email" />
-					<div class="error"></div>
+					<div class="error">
+						<?php
+						if (!empty($errors) && in_array("Email is required.", $errors)) {
+							echo "Email is required.";
+						} elseif (!empty($errors) && in_array("Invalid email format.", $errors)) {
+							echo "Invalid email format.";
+						}
+						?>
+					</div>
 				</div>
 
 				<div class="input-control">
 					<label for="password">Password</label>
 					<input type="password" id="password" name="password" placeholder="Your password" />
-					<div class="error"></div>
+					<div class="error">
+						<?php
+						if (!empty($errors) && in_array("Password is required.", $errors)) {
+							echo "Password is required.";
+						} elseif (!empty($errors) && (in_array("Invalid email or password.", $errors) || in_array("Invalid email or password.", $errors))) {
+							echo "Invalid email or password.";
+						}
+						?>
+					</div>
 				</div>
 
 				<button type="submit">Log In</button>
 			</form>
-
 		</div>
 	</div>
 
