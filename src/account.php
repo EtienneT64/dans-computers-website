@@ -1,6 +1,6 @@
 <?php
 // Import the dbh.inc.php file
-require_once("/includes/connection.php");
+require_once("../includes/connection.php");
 session_start();
 ?>
 <?php
