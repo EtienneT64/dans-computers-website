@@ -1,4 +1,3 @@
-/* Hero container styles */
 .hero {
 	background-color: #f2f6ff;
 	height: 50vh;
@@ -11,7 +10,6 @@
 	color: black;
 }
 
-/* Text styles */
 .hero h1 {
 	font-size: 48px;
 	color: black;

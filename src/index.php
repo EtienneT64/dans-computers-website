@@ -21,7 +21,6 @@ if (session_status() === PHP_SESSION_NONE) {
 
 	<script>
 		$(document).ready(function() {
-			// Add click event listener to all "Add to Cart" buttons
 			$(".product-card-button").on("click", function() {
 				// Check if the user is logged in
 				if (loggedIn()) {
@@ -51,24 +50,18 @@ if (session_status() === PHP_SESSION_NONE) {
 						}
 					});
 				} else {
-					// User is not logged in, redirect to the account page or login page
 					window.location.href = "/src/account.php";
 				}
 			});
 
-			// Function to check if the user is logged in
 			function loggedIn() {
-				// Add your logic to check if the user is logged in
-				// For example, you can check if a session variable is set
 				return <?php echo isset($_SESSION['UserID']) ? 'true' : 'false'; ?>;
 			}
-
-			// Add click event listener to the hero "Add to Cart" button
 			$(".hero-button").on("click", function() {
 				// Check if the user is logged in
 				if (loggedIn()) {
 					// Get the item ID for the hero section
-					var itemID = 4; // Replace 1 with the appropriate item ID
+					var itemID = 4;
 
 					// Send AJAX request to add the item to the cart
 					$.ajax({
@@ -93,7 +86,7 @@ if (session_status() === PHP_SESSION_NONE) {
 						}
 					});
 				} else {
-					// User is not logged in, redirect to the account page or login page
+					// User is not logged in, redirect to the account page
 					window.location.href = "/src/account.php";
 				}
 			});
@@ -178,8 +171,8 @@ if (session_status() === PHP_SESSION_NONE) {
 			</ul>
 		</div>
 	</section>
-	<?php include_once "../includes/footer.php"; ?>
 
+	<?php include_once "../includes/footer.php"; ?>
 </body>
 
 </html>
