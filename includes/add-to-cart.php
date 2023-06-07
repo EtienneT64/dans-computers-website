@@ -7,8 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Check if the user is logged in
 if (!isset($_SESSION['UserID'])) {
-	// User is not logged in, redirect to the account page or login page
-	header("Location: /src/account.php"); // Replace "account.php" with the appropriate page URL
+	header("Location: /src/account.php");
 	exit();
 }
 
@@ -51,6 +50,6 @@ if (isset($_POST['itemID'])) {
 	// Close the database conn
 	mysqli_close($conn);
 
-	// Return a response to the AJAX request (optional)
-	echo "Success"; // You can customize the response message as needed
+	// Return a response to the AJAX request
+	echo "Success";
 }
