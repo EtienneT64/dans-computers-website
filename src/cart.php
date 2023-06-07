@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 // Check if the user is not logged in
 if (!isset($_SESSION['UserID'])) {
 	header("Location: /src/account.php");
-	exit(); // Make sure to exit after the redirect
+	exit();
 }
 ?>
 
@@ -115,7 +115,6 @@ if (!isset($_SESSION['UserID'])) {
 	<script>
 		// Function to remove an item from the cart
 		function removeItem(itemID) {
-			// Send an AJAX request to the remove_item.php script
 			var xhr = new XMLHttpRequest();
 			xhr.open("POST", "../includes/remove-item.php", true);
 			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -128,7 +127,6 @@ if (!isset($_SESSION['UserID'])) {
 			xhr.send("itemID=" + itemID);
 		}
 
-		// Function to handle the checkout process
 		function checkout() {
 			// Check if the cart is empty
 			if (<?php echo ($subtotal > 0) ? 'true' : 'false'; ?>) {
@@ -140,8 +138,6 @@ if (!isset($_SESSION['UserID'])) {
 					if (xhr.readyState === 4 && xhr.status === 200) {
 						// Display a success message
 						alert("Thank you for your purchase!");
-
-						// Optionally, you can redirect the user to a confirmation page or perform any other necessary actions
 
 						// Reload the page to update the cart
 						location.reload();
