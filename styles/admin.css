@@ -1,0 +1,103 @@
+/* admin.css */
+
+.container {
+	font-family: 'Oswald', sans-serif;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 20px;
+	margin-top: 50px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	max-width: 1200px; /* Updated width to use max-width for responsiveness */
+}
+
+h1 {
+	text-align: center;
+}
+
+h2 {
+	margin-top: 30px;
+}
+
+.item-form {
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+input[type='text'],
+textarea,
+input[type='number'] {
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+input[type='submit'],
+.btn-add,
+.btn-update,
+.btn-delete {
+	padding: 10px;
+	border: none;
+	cursor: pointer;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 5px;
+}
+
+.btn-add {
+	background-color: #4caf50;
+	color: white;
+}
+
+.btn-add:hover {
+	background-color: #45a049;
+}
+
+.btn-update {
+	background-color: #007bff;
+	color: white;
+}
+
+.btn-update:hover {
+	background-color: #0069d9;
+}
+
+.btn-delete,
+.delete-button {
+	background-color: #f44336;
+	color: white;
+}
+
+.btn-delete:hover,
+.delete-button:hover {
+	background-color: #d32f2f;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table th,
+table td {
+	padding: 10px;
+	border: 1px solid #ddd;
+}
+
+table th {
+	background-color: #f2f2f2;
+}
+
+/* Additional CSS for spacing between update and delete buttons */
+.button-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+.btn-update {
+	margin-right: 5px;
+}
