@@ -3,11 +3,20 @@ require_once("../includes/connection.php");
 
 if (session_status() === PHP_SESSION_NONE) {
 	session_start();
-};
+}
 
+// Check if user is logged in
+if (!isset($_SESSION['UserID'])) {
+	// User is not logged in, redirect to the account page or login page
+	header("Location: /src/account.php"); // Replace "account.php" with the appropriate page URL
+	exit();
+}
+?>
+
+<?php
 if (isset($_POST['itemID'])) {
 	$itemID = $_POST['itemID'];
-	$userID = $_SESSION['userID']; // Assuming you have a user session
+	$userID = $_SESSION['UserID'];
 
 	// Check if the item already exists in the cart
 	$query = "SELECT * FROM user_cart WHERE ItemID = $itemID AND UserID = $userID";
@@ -26,3 +35,4 @@ if (isset($_POST['itemID'])) {
 	// Return a response to the AJAX request (optional)
 	echo "Success"; // You can customize the response message as needed
 }
+?>

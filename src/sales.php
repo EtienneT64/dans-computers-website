@@ -97,9 +97,7 @@ if (session_status() === PHP_SESSION_NONE) {
 	<section class="mostpopular">
 		<div class="mostpopular-content">
 			<h2 class="mostpopular-content-headers">All Products</h2>
-			<h3 class="mostpopular-content-headers">
-				Prices subject to change
-			</h3>
+			<h3 class="mostpopular-content-headers">Prices subject to change</h3>
 			<ul class="products">
 				<?php
 				$query = "SELECT * FROM items";
@@ -107,7 +105,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 				if (mysqli_num_rows($result) > 0) {
 					while ($row = mysqli_fetch_assoc($result)) {
-						echo '<li class="product-card">';
+						echo '<li class="product-card" data-itemid="' . $row['ItemID'] . '">';
 						echo '<div class="product-card-image">';
 						echo '<img src="/images/' . $row['Image'] . '" alt="' . $row['Name'] . '" />';
 						echo '</div>';
@@ -135,16 +133,21 @@ if (session_status() === PHP_SESSION_NONE) {
 					echo '<li>No items found.</li>';
 				}
 
-
 				// Close the database connection
 				mysqli_close($conn);
 				?>
+
 			</ul>
 		</div>
 	</section>
 
 
 	<?php include_once "../includes/footer.php"; ?>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- Include your custom JavaScript file -->
+	<script src="/scripts/add-to-cart.js"></script>
 
 </body>
 
