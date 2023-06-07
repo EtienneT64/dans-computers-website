@@ -62,6 +62,41 @@ if (session_status() === PHP_SESSION_NONE) {
 				// For example, you can check if a session variable is set
 				return <?php echo isset($_SESSION['UserID']) ? 'true' : 'false'; ?>;
 			}
+
+			// Add click event listener to the hero "Add to Cart" button
+			$(".hero-button").on("click", function() {
+				// Check if the user is logged in
+				if (loggedIn()) {
+					// Get the item ID for the hero section
+					var itemID = 4; // Replace 1 with the appropriate item ID
+
+					// Send AJAX request to add the item to the cart
+					$.ajax({
+						type: "POST",
+						url: "/includes/add-to-cart.php",
+						data: {
+							itemID: itemID
+						},
+						success: function(response) {
+							// Handle the response from the server
+							if (response === "Success") {
+								// Item added to cart successfully
+								alert("Item added to cart!");
+							} else {
+								// Error handling if needed
+								alert("Failed to add item to cart. Please try again.");
+							}
+						},
+						error: function() {
+							// Error handling if AJAX request fails
+							alert("An error occurred. Please try again.");
+						}
+					});
+				} else {
+					// User is not logged in, redirect to the account page or login page
+					window.location.href = "/src/account.php";
+				}
+			});
 		});
 	</script>
 
@@ -71,7 +106,6 @@ if (session_status() === PHP_SESSION_NONE) {
 <body>
 	<?php include_once "../includes/header.php"; ?>
 
-
 	<section class="hero">
 		<div class="hero-content">
 			<h1>Deal of the Day</h1>
@@ -80,10 +114,10 @@ if (session_status() === PHP_SESSION_NONE) {
 				<span class="old-price">R10,000.00</span>
 				<span class="sale-price">R4,999.00</span>
 			</h3>
-			<button>Add to Cart</button>
+			<button class="hero-button">Add to Cart</button>
 		</div>
 		<div>
-			<img src="/images/deal1.jpg" alt="ASUS ROG MAXIMUS XII HERO WIFI INTEL ATX MOTHERBOARD" class="hero_image" />
+			<img src="/images/deal1.jpg" alt="Deal of the day" class="hero_image" />
 		</div>
 	</section>
 
