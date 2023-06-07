@@ -15,7 +15,7 @@ if (!isset($_SESSION["admin"])) {
 // Function to retrieve all items from the database
 function getItems($conn)
 {
-	$stmt = $conn->prepare("SELECT * FROM items");
+	$stmt = $conn->prepare("SELECT * FROM items WHERE ItemID > 6");
 	$stmt->execute();
 	return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 }
