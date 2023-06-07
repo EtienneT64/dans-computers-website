@@ -47,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				// Set the session variables
 				$_SESSION['UserID'] = $row['UserID']; // Example: Store the user ID
 				$_SESSION['Username'] = $row['Username']; // Example: Store the username
+				$_SESSION['Email'] = $row['Email']; // Example: Store the username
 
 
 				// Example: Redirect to homepage

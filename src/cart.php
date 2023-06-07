@@ -1,4 +1,6 @@
 <?php
+require_once("../includes/connection.php");
+
 if (session_status() === PHP_SESSION_NONE) {
 	session_start();
 }
@@ -34,8 +36,9 @@ if (!isset($_SESSION['UserID'])) {
 		<div class="section">
 			<div class="section-title">Customer Information</div>
 			<div class="section-content">
-				<p>Email: john.doe@example.com</p>
-				<p>Shipping Address: 123 Main St, Anytown, USA</p>
+				<p>Username: <?php echo isset($_SESSION['Username']) ? $_SESSION['Username'] : ''; ?></p>
+				<p>Email: <?php echo isset($_SESSION['Email']) ? $_SESSION['Email'] : ''; ?></p>
+				<p>Shipping Address: 22 Firgrove, Cape Town, South Africa</p>
 			</div>
 		</div>
 
@@ -43,7 +46,7 @@ if (!isset($_SESSION['UserID'])) {
 			<div class="section-title">Shipping Method</div>
 			<div class="section-content">
 				<p>
-					Please choose a shipping method: Standard Shipping (3-5 business
+					Door-to-door Courier: Standard Shipping (3-5 business
 					days)
 				</p>
 			</div>
@@ -55,7 +58,7 @@ if (!isset($_SESSION['UserID'])) {
 				<p>Payment Method: Credit Card</p>
 				<p>Card Number: ************1234</p>
 				<p>Expiration Date: 12/2024</p>
-				<p>Billing Address: 123 Main St, Anytown, USA</p>
+				<p>Billing Address: 22 Firgrove, Cape Town, South Afric</p>
 			</div>
 		</div>
 
