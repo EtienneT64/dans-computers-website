@@ -5,7 +5,7 @@
 <footer class="footer">
 	<div class="footer-content">
 		<div class="footer-logo">
-			<img src="/images/logo.png" alt="Logo" />
+			<img src="/images/logo.png" alt="Dans Computers Logo" />
 		</div>
 		<div class="footer-links">
 			<ul>

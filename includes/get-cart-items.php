@@ -14,7 +14,6 @@ $sql = "SELECT items.ItemID, items.Name, items.SalesPrice, user_cart.Quantity
 
 $result = mysqli_query($conn, $sql);
 
-// Check if the query was successful
 if ($result && mysqli_num_rows($result) > 0) {
 	// Initialize variables for calculations
 	$subtotal = 0;
@@ -26,7 +25,6 @@ if ($result && mysqli_num_rows($result) > 0) {
 		$salesPrice = $row['SalesPrice'];
 		$quantity = $row['Quantity'];
 
-		// Calculate the item subtotal using the sales price and add it to the overall subtotal
 		$itemSubtotal = $salesPrice * $quantity;
 		$subtotal += $itemSubtotal;
 
@@ -60,14 +58,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 $_SESSION['cart'] = $result;
 ?>
 
-
-
-<!-- Your HTML code -->
-
 <script>
-	// ...
-
-	// Function to handle the checkout process
 	function checkout() {
 		// Check if the cart is empty
 		if (<?php echo ($subtotal > 0) ? 'true' : 'false'; ?>) {
@@ -79,8 +70,6 @@ $_SESSION['cart'] = $result;
 				if (xhr.readyState === 4 && xhr.status === 200) {
 					// Display a success message
 					alert("Thank you for your purchase!");
-
-					// Optionally, you can redirect the user to a confirmation page or perform any other necessary actions
 
 					// Reload the page to update the cart
 					location.reload();
