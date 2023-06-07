@@ -4,6 +4,14 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
+<?php
+// Check if the user is not logged in
+if (!isset($_SESSION['UserID'])) {
+	header("Location: /src/account.php");
+	exit(); // Make sure to exit after the redirect
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

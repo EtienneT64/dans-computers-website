@@ -24,9 +24,6 @@
 				<label for="email">Email:</label>
 				<p id="email">larrylow@gmail.com</p>
 			</div>
-			<div class="change-password-link">
-				<a href="#">Change Password</a>
-			</div>
 			<div class="logout-link">
 				<a href="/includes/logout.php">Logout</a>
 			</div>
