@@ -7,7 +7,6 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Check if the admin session variable is not set
 if (!isset($_SESSION["admin"])) {
-	// Redirect to the login form or another appropriate page
 	header("Location: /src/account.php");
 	exit;
 }
