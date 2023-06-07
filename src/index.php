@@ -51,8 +51,8 @@ if (session_status() === PHP_SESSION_NONE) {
 							6-Core 3.5GHz (4.4GHz Boost) Socket AM4 Desktop CPU
 						</p>
 						<h3>
-							<span class="old-price">R10,000.00</span>
-							<span class="sale-price">R4,999.00</span>
+							<span class="old-price">R5,000.00</span>
+							<span class="sale-price">R3,999.00</span>
 						</h3>
 						<button class="product-card-button">Add to Cart</button>
 					</div>
@@ -68,8 +68,8 @@ if (session_status() === PHP_SESSION_NONE) {
 							Graphics Card
 						</p>
 						<h3>
-							<span class="old-price">R10,000.00</span>
-							<span class="sale-price">R4,999.00</span>
+							<span class="old-price">R16,000.00</span>
+							<span class="sale-price">R14,999.00</span>
 						</h3>
 						<button class="product-card-button">Add to Cart</button>
 					</div>
@@ -85,8 +85,8 @@ if (session_status() === PHP_SESSION_NONE) {
 							Curved Monitor
 						</p>
 						<h3>
-							<span class="old-price">R10,000.00</span>
-							<span class="sale-price">R4,999.00</span>
+							<span class="old-price">R25,000.00</span>
+							<span class="sale-price">R22,999.00</span>
 						</h3>
 						<button class="product-card-button">Add to Cart</button>
 					</div>
