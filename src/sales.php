@@ -19,10 +19,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	<!-- Include your custom JavaScript file -->
 	<script>
 		$(document).ready(function() {
-			// Add click event listener to all "Add to Cart" buttons
 			$(".product-card-button").on("click", function() {
 				// Check if the user is logged in
 				if (loggedIn()) {
@@ -52,15 +50,11 @@ if (session_status() === PHP_SESSION_NONE) {
 						}
 					});
 				} else {
-					// User is not logged in, redirect to the account page or login page
 					window.location.href = "/src/account.php";
 				}
 			});
 
-			// Function to check if the user is logged in
 			function loggedIn() {
-				// Add your logic to check if the user is logged in
-				// For example, you can check if a session variable is set
 				return <?php echo isset($_SESSION['UserID']) ? 'true' : 'false'; ?>;
 			}
 		});
@@ -142,7 +136,6 @@ if (session_status() === PHP_SESSION_NONE) {
 		</div>
 	</section>
 
-
 	<section class="mostpopular">
 		<div class="mostpopular-content">
 			<h2 class="mostpopular-content-headers">All Products</h2>
@@ -162,18 +155,15 @@ if (session_status() === PHP_SESSION_NONE) {
 						echo '<h3 class="product-card-title">' . $row['Name'] . '</h3>';
 						echo '<p class="product-card-description">' . $row['Description'] . '</p>';
 
-						// Format the price using number_format() function
 						$price = 'R' . number_format($row['Price'], 2, '.', ',');
 						echo '<h3>';
 						echo '<span class="old-price">' . $price . '</span>';
 
-						// Format the sales price if available
 						if ($row['SalesPrice'] != null) {
 							$salesPrice = 'R' . number_format($row['SalesPrice'], 2, '.', ',');
 							echo '<span class="sale-price">' . $salesPrice . '</span>';
 						}
 						echo '</h3>';
-
 						echo '<button class="product-card-button">Add to Cart</button>';
 						echo '</div>';
 						echo '</li>';
@@ -181,7 +171,6 @@ if (session_status() === PHP_SESSION_NONE) {
 				} else {
 					echo '<li>No items found.</li>';
 				}
-
 				// Close the database connection
 				mysqli_close($conn);
 				?>
@@ -190,11 +179,7 @@ if (session_status() === PHP_SESSION_NONE) {
 		</div>
 	</section>
 
-
 	<?php include_once "../includes/footer.php"; ?>
-
-
-
 </body>
 
 </html>
