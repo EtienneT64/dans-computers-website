@@ -17,6 +17,8 @@ if (session_status() === PHP_SESSION_NONE) {
 	<link rel="stylesheet" type="text/css" href="/styles/hero.css" />
 	<link rel="stylesheet" type="text/css" href="/styles/mostpopular.css" />
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	<script>
 		$(document).ready(function() {
 			// Add click event listener to all "Add to Cart" buttons
@@ -81,7 +83,7 @@ if (session_status() === PHP_SESSION_NONE) {
 			<button>Add to Cart</button>
 		</div>
 		<div>
-			<img src="/images/deal1.jpg" alt="Deal of the day" class="hero_image" />
+			<img src="/images/deal1.jpg" alt="ASUS ROG MAXIMUS XII HERO WIFI INTEL ATX MOTHERBOARD" class="hero_image" />
 		</div>
 	</section>
 
