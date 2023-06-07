@@ -73,7 +73,7 @@ if (!isset($_SESSION['UserID'])) {
 					<?php
 					// Retrieve cart items for the logged-in user
 					$userID = $_SESSION['UserID'];
-					$sql = "SELECT items.Name, user_cart.Quantity
+					$sql = "SELECT items.Name, items.Price, user_cart.Quantity
 							FROM user_cart
 							INNER JOIN items ON user_cart.ItemID = items.ItemID
 							WHERE user_cart.UserID = $userID";
@@ -82,10 +82,18 @@ if (!isset($_SESSION['UserID'])) {
 
 					// Check if the query was successful
 					if ($result && mysqli_num_rows($result) > 0) {
+						// Initialize variables for calculations
+						$subtotal = 0;
+
 						// Iterate over the cart items and display them
 						while ($row = mysqli_fetch_assoc($result)) {
 							$itemName = $row['Name'];
+							$price = $row['Price'];
 							$quantity = $row['Quantity'];
+
+							// Calculate the item subtotal and add it to the overall subtotal
+							$itemSubtotal = $price * $quantity;
+							$subtotal += $itemSubtotal;
 
 							// Display the item details
 							echo "<tr>";
@@ -96,6 +104,13 @@ if (!isset($_SESSION['UserID'])) {
 							echo "<td class='quantity-cell'>$quantity</td>";
 							echo "</tr>";
 						}
+
+						// Calculate the VAT and total
+						$vat = $subtotal * 0.15;
+						$total = $subtotal + $vat;
+
+						// Calculate the shipping cost
+						$shipping = ($subtotal >= 1000) ? 0 : 100;
 					} else {
 						// Handle the case when the cart is empty
 						echo "<tr><td colspan='2'>Your cart is empty.</td></tr>";
@@ -112,19 +127,19 @@ if (!isset($_SESSION['UserID'])) {
 			<table>
 				<tr>
 					<td>Subtotal:</td>
-					<td>R150.00</td>
+					<td>R<?php echo number_format($subtotal, 2); ?></td>
 				</tr>
 				<tr>
 					<td>VAT (15%):</td>
-					<td>R15.00</td>
+					<td>R<?php echo number_format($vat, 2); ?></td>
 				</tr>
 				<tr>
 					<td>Shipping:</td>
-					<td>R10.00</td>
+					<td>R<?php echo number_format($shipping, 2); ?></td>
 				</tr>
 				<tr class="total-row">
 					<td>Total:</td>
-					<td>R175.00</td>
+					<td>R<?php echo number_format($total, 2); ?></td>
 				</tr>
 			</table>
 		</div>
