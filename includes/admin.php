@@ -26,25 +26,11 @@ function addItem($conn, $name, $description, $price, $salesPrice, $image)
 	$stmt = $conn->prepare("INSERT INTO items (Name, Description, Price, SalesPrice, Image) VALUES (?, ?, ?, ?, ?)");
 	$stmt->bind_param("ssdds", $name, $description, $price, $salesPrice, $image);
 	if ($stmt->execute()) {
-		// Redirect to the admin page after successful addition
-		header("Location: admin.php?success=add");
-		exit;
+		// Display JavaScript alert for successful addition
+		echo '<script>alert("Item added successfully!");</script>';
 	} else {
 		// Display an alert for failed addition
 		echo '<script>alert("Failed to add the item. Please try again.");</script>';
-	}
-}
-
-
-// Function to update an existing item in the database
-function updateItem($conn, $itemID, $name, $description, $price, $salesPrice, $image)
-{
-	$stmt = $conn->prepare("UPDATE items SET Name = ?, Description = ?, Price = ?, SalesPrice = ?, Image = ? WHERE ItemID = ?");
-	$stmt->bind_param("ssddsi", $name, $description, $price, $salesPrice, $image, $itemID);
-	if ($stmt->execute()) {
-		return true; // Return true if update is successful
-	} else {
-		return false; // Return false if update fails
 	}
 }
 
@@ -71,25 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$image = $_POST['image'];
 
 		addItem($conn, $name, $description, $price, $salesPrice, $image);
-	} elseif (isset($_POST['update'])) {
-		// Process the form submission for updating an existing item
-		$itemID = $_POST['item_id'];
-		$name = $_POST['name'];
-		$description = $_POST['description'];
-		$price = $_POST['price'];
-		$salesPrice = $_POST['sales_price'];
-		$image = $_POST['image'];
-
-		$success = updateItem($conn, $itemID, $name, $description, $price, $salesPrice, $image);
-
-		if ($success) {
-			// Redirect to the admin page after successful update
-			header("Location: admin.php?success=update");
-			exit;
-		} else {
-			// Display an alert indicating the update failed
-			echo '<script>alert("Failed to update the item. Please try again.");</script>';
-		}
 	} elseif (isset($_POST['delete'])) {
 		// Process the form submission for deleting an item
 		$itemID = $_POST['item_id'];
@@ -100,11 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Retrieve all items from the database
 $items = getItems($conn);
-
-// Check if an item was successfully added
-if (isset($_GET['success']) && $_GET['success'] === 'add') {
-	echo '<script>alert("Item added successfully!");</script>';
-}
 ?>
 
 <!DOCTYPE html>
@@ -165,15 +127,6 @@ if (isset($_GET['success']) && $_GET['success'] === 'add') {
 					<td><?= $item['Image'] ?></td>
 					<td>
 						<div class="button-container">
-							<form method="post" style="display:inline;">
-								<input type="hidden" name="item_id" value="<?= $item['ItemID'] ?>">
-								<input type="hidden" name="name" value="<?= $item['Name'] ?>">
-								<input type="hidden" name="description" value="<?= $item['Description'] ?>">
-								<input type="hidden" name="price" value="<?= $item['Price'] ?>">
-								<input type="hidden" name="sales_price" value="<?= $item['SalesPrice'] ?>">
-								<input type="hidden" name="image" value="<?= $item['Image'] ?>">
-								<input type="submit" class="btn-update" name="update" value="Update">
-							</form>
 							<form method="post" style="display:inline;">
 								<input type="hidden" name="item_id" value="<?= $item['ItemID'] ?>">
 								<input type="submit" class="btn-delete" name="delete" value="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
