@@ -1,4 +1,3 @@
-/* Reset default margin and padding */
 body,
 nav {
 	margin: 0;
@@ -10,7 +9,6 @@ body {
 	background-color: #e5e7eb;
 }
 
-/* Set header background and height */
 .nav_header {
 	background-color: #fff;
 	border-bottom: 1px solid lightgrey;
@@ -29,7 +27,6 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
-/* Style logo */
 .header_img-logo {
 	height: 40px;
 }
@@ -39,7 +36,6 @@ body {
 	margin-right: 20px;
 }
 
-/* Style navigation links */
 .nav_links {
 	flex: 1;
 	display: flex;
@@ -55,7 +51,6 @@ body {
 	margin-right: 20px;
 }
 
-/* Style navigation actions */
 .nav_actions {
 	display: flex;
 	align-items: center;
@@ -68,14 +63,6 @@ body {
 	font-weight: bold;
 }
 
-/* .menu-dropdown {
-    height: 0;
-    width: 0;
-    overflow: hidden;
-} */
-
-/* Responsive styles */
-/* Hide navigation links on desktop view */
 @media only screen and (min-width: 769px) {
 	.menu-dropdown {
 		display: none;
