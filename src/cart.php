@@ -137,7 +137,7 @@ if (!isset($_SESSION['UserID'])) {
 				<?php if ($subtotal > 0) { ?>
 					<tr>
 						<td>Subtotal:</td>
-						<td>R<?php echo number_format($subtotal * 0.85, 2); ?></td>
+						<td>R<?php echo number_format($subtotal, 2); ?></td>
 					</tr>
 					<tr>
 						<td>VAT (15%):</td>
@@ -185,8 +185,25 @@ if (!isset($_SESSION['UserID'])) {
 
 		// Function to handle the checkout process
 		function checkout() {
-			// Implement your checkout logic here
-			alert("Thank you for your purchase!");
+			// Check if the cart is empty
+			if (<?php echo ($subtotal > 0) ? 'true' : 'false'; ?>) {
+				// Generate a transaction
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", "/includes/generate-transaction.php", true);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState === 4 && xhr.status === 200) {
+						// Display a success message
+						alert("Thank you for your purchase!");
+
+						// Optionally, you can redirect the user to a confirmation page or perform any other necessary actions
+					}
+				};
+				xhr.send();
+			} else {
+				// Display an alert for an empty cart
+				alert("Your cart is empty.");
+			}
 		}
 	</script>
 </body>
