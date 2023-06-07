@@ -6,7 +6,8 @@
 	margin-top: 50px;
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-	max-width: 1200px; /* Updated width to use max-width for responsiveness */
+	max-width: 1200px;
+	min-height: calc(100vh - 262px);
 }
 
 h1 {
