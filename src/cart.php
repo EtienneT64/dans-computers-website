@@ -68,12 +68,13 @@ if (!isset($_SESSION['UserID'])) {
 				<table>
 					<tr>
 						<th>Item</th>
+						<th>Price</th>
 						<th>Quantity</th>
 					</tr>
 					<?php
 					// Retrieve cart items for the logged-in user
 					$userID = $_SESSION['UserID'];
-					$sql = "SELECT items.Name, items.Price, user_cart.Quantity
+					$sql = "SELECT items.Name, items.SalesPrice, user_cart.Quantity
 							FROM user_cart
 							INNER JOIN items ON user_cart.ItemID = items.ItemID
 							WHERE user_cart.UserID = $userID";
@@ -88,11 +89,11 @@ if (!isset($_SESSION['UserID'])) {
 						// Iterate over the cart items and display them
 						while ($row = mysqli_fetch_assoc($result)) {
 							$itemName = $row['Name'];
-							$price = $row['Price'];
+							$salesPrice = $row['SalesPrice'];
 							$quantity = $row['Quantity'];
 
-							// Calculate the item subtotal and add it to the overall subtotal
-							$itemSubtotal = $price * $quantity;
+							// Calculate the item subtotal using the sales price and add it to the overall subtotal
+							$itemSubtotal = $salesPrice * $quantity;
 							$subtotal += $itemSubtotal;
 
 							// Display the item details
@@ -101,6 +102,7 @@ if (!isset($_SESSION['UserID'])) {
 							echo "<img src='/images/$itemName.jpg' alt='$itemName' class='product-image' />";
 							echo "<span>$itemName</span>";
 							echo "</td>";
+							echo "<td class='price-cell'>R" . number_format($salesPrice, 2) . "</td>";
 							echo "<td class='quantity-cell'>$quantity</td>";
 							echo "</tr>";
 						}
@@ -113,7 +115,7 @@ if (!isset($_SESSION['UserID'])) {
 						$shipping = ($subtotal >= 1000) ? 0 : 100;
 					} else {
 						// Handle the case when the cart is empty
-						echo "<tr><td colspan='2'>Your cart is empty.</td></tr>";
+						echo "<tr><td colspan='3'>Your cart is empty.</td></tr>";
 					}
 
 					// Close the database connection
@@ -127,7 +129,7 @@ if (!isset($_SESSION['UserID'])) {
 			<table>
 				<tr>
 					<td>Subtotal:</td>
-					<td>R<?php echo number_format($subtotal, 2); ?></td>
+					<td>R<?php echo number_format($subtotal * 0.85, 2); ?></td>
 				</tr>
 				<tr>
 					<td>VAT (15%):</td>

@@ -6,14 +6,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
-<?php
-// Check if the user is not logged in
-if (!isset($_SESSION['UserID'])) {
-	header("Location: /src/account.php");
-	exit(); // Make sure to exit after the redirect
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,132 +14,172 @@ if (!isset($_SESSION['UserID'])) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<link rel="stylesheet" type="text/css" href="/styles/cart.css" />
+	<link rel="stylesheet" type="text/css" href="/styles/hero.css" />
+	<link rel="stylesheet" type="text/css" href="/styles/mostpopular.css" />
 
-	<title>Website / Cart</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			// Add click event listener to all "Add to Cart" buttons
+			$(".product-card-button").on("click", function() {
+				// Check if the user is logged in
+				if (loggedIn()) {
+					// Get the item ID from the parent list item
+					var itemID = $(this).closest(".product-card").data("itemid");
+
+					// Send AJAX request to add the item to the cart
+					$.ajax({
+						type: "POST",
+						url: "/includes/add-to-cart.php",
+						data: {
+							itemID: itemID
+						},
+						success: function(response) {
+							// Handle the response from the server
+							if (response === "Success") {
+								// Item added to cart successfully
+								alert("Item added to cart!");
+							} else {
+								// Error handling if needed
+								alert("Failed to add item to cart. Please try again.");
+							}
+						},
+						error: function() {
+							// Error handling if AJAX request fails
+							alert("An error occurred. Please try again.");
+						}
+					});
+				} else {
+					// User is not logged in, redirect to the account page or login page
+					window.location.href = "/src/account.php";
+				}
+			});
+
+			// Function to check if the user is logged in
+			function loggedIn() {
+				// Add your logic to check if the user is logged in
+				// For example, you can check if a session variable is set
+				return <?php echo isset($_SESSION['UserID']) ? 'true' : 'false'; ?>;
+			}
+
+			// Add click event listener to the hero "Add to Cart" button
+			$(".hero-button").on("click", function() {
+				// Check if the user is logged in
+				if (loggedIn()) {
+					// Get the item ID for the hero section
+					var itemID = 4; // Replace 1 with the appropriate item ID
+
+					// Send AJAX request to add the item to the cart
+					$.ajax({
+						type: "POST",
+						url: "/includes/add-to-cart.php",
+						data: {
+							itemID: itemID
+						},
+						success: function(response) {
+							// Handle the response from the server
+							if (response === "Success") {
+								// Item added to cart successfully
+								alert("Item added to cart!");
+							} else {
+								// Error handling if needed
+								alert("Failed to add item to cart. Please try again.");
+							}
+						},
+						error: function() {
+							// Error handling if AJAX request fails
+							alert("An error occurred. Please try again.");
+						}
+					});
+				} else {
+					// User is not logged in, redirect to the account page or login page
+					window.location.href = "/src/account.php";
+				}
+			});
+		});
+	</script>
+
+	<title>Dans Computers / Home</title>
 </head>
 
 <body>
 	<?php include_once "../includes/header.php"; ?>
 
-	<div class="container">
-		<h2>Checkout Cart</h2>
-
-		<div class="section">
-			<div class="section-title">Customer Information</div>
-			<div class="section-content">
-				<p>Username: <?php echo isset($_SESSION['Username']) ? $_SESSION['Username'] : ''; ?></p>
-				<p>Email: <?php echo isset($_SESSION['Email']) ? $_SESSION['Email'] : ''; ?></p>
-				<p>Shipping Address: 22 Firgrove, Cape Town, South Africa</p>
-			</div>
+	<section class="hero">
+		<div class="hero-content">
+			<h1>Deal of the Day</h1>
+			<h2>ASUS ROG MAXIMUS XII HERO WIFI INTEL ATX MOTHERBOARD</h2>
+			<h3>
+				<span class="old-price">R10,000.00</span>
+				<span class="sale-price">R4,999.00</span>
+			</h3>
+			<button class="hero-button">Add to Cart</button>
 		</div>
-
-		<div class="section">
-			<div class="section-title">Shipping Method</div>
-			<div class="section-content">
-				<p>
-					Door-to-door Courier: Standard Shipping (3-5 business
-					days)
-				</p>
-			</div>
+		<div>
+			<img src="/images/ASUS ROG MAXIMUS XII HERO WIFI.jpg" alt="Deal of the day" class="hero_image" />
 		</div>
+	</section>
 
-		<div class="section">
-			<div class="section-title">Payment Information</div>
-			<div class="section-content">
-				<p>Payment Method: Credit Card</p>
-				<p>Card Number: ************1234</p>
-				<p>Expiration Date: 12/2024</p>
-				<p>Billing Address: 22 Firgrove, Cape Town, South Africa</p>
-			</div>
+	<section class="mostpopular">
+		<div class="mostpopular-content">
+			<h2 class="mostpopular-content-headers">Most popular</h2>
+			<ul class="products">
+				<li class="product-card" data-itemid="1">
+					<div class="product-card-image">
+						<img src="/images/Ryzen 5 5600.jpg" alt="Ryzen 5 5600" />
+					</div>
+					<div class="product-card-info">
+						<h3 class="product-card-title">Ryzen 5 5600</h3>
+						<p class="product-card-description">
+							6-Core 3.5GHz (4.4GHz Boost) Socket AM4 Desktop CPU
+						</p>
+						<h3>
+							<span class="old-price">R5,000.00</span>
+							<span class="sale-price">R3,999.00</span>
+						</h3>
+						<button class="product-card-button">Add to Cart</button>
+					</div>
+				</li>
+				<li class="product-card" data-itemid="2">
+					<div class="product-card-image">
+						<img src="/images/ASUS RTX 3070 TUF Gaming.jpg" alt="ASUS RTX 3070 TUF Gaming" />
+					</div>
+					<div class="product-card-info">
+						<h3 class="product-card-title">ASUS RTX 3070 TUF Gaming</h3>
+						<p class="product-card-description">
+							TUF-RTX4070-12G-GAMING 12GB GDDR6X 192-Bit PCIe 4.0 Desktop
+							Graphics Card
+						</p>
+						<h3>
+							<span class="old-price">R16,000.00</span>
+							<span class="sale-price">R14,999.00</span>
+						</h3>
+						<button class="product-card-button">Add to Cart</button>
+					</div>
+				</li>
+				<li class="product-card" data-itemid="3">
+					<div class="product-card-image">
+						<img src="/images/Alienware AW3423DW.jpg" alt="Alienware AW3423DW" />
+					</div>
+					<div class="product-card-info">
+						<h3 class="product-card-title">Alienware AW3423DW</h3>
+						<p class="product-card-description">
+							UWQHD (3440x1440) 175Hz 0.1ms QD-OLED HDR400 G-Sync Ultimate
+							Curved Monitor
+						</p>
+						<h3>
+							<span class="old-price">R25,000.00</span>
+							<span class="sale-price">R22,999.00</span>
+						</h3>
+						<button class="product-card-button">Add to Cart</button>
+					</div>
+				</li>
+			</ul>
 		</div>
-
-		<div class="section">
-			<div class="section-title">Items in Order</div>
-			<div class="section-content">
-				<table>
-					<tr>
-						<th>Item</th>
-						<th>Price</th>
-						<th>Quantity</th>
-					</tr>
-					<?php
-					// Retrieve cart items for the logged-in user
-					$userID = $_SESSION['UserID'];
-					$sql = "SELECT items.Name, items.SalesPrice, user_cart.Quantity
-							FROM user_cart
-							INNER JOIN items ON user_cart.ItemID = items.ItemID
-							WHERE user_cart.UserID = $userID";
-
-					$result = mysqli_query($conn, $sql);
-
-					// Check if the query was successful
-					if ($result && mysqli_num_rows($result) > 0) {
-						// Initialize variables for calculations
-						$subtotal = 0;
-
-						// Iterate over the cart items and display them
-						while ($row = mysqli_fetch_assoc($result)) {
-							$itemName = $row['Name'];
-							$salesPrice = $row['SalesPrice'];
-							$quantity = $row['Quantity'];
-
-							// Calculate the item subtotal using the sales price and add it to the overall subtotal
-							$itemSubtotal = $salesPrice * $quantity;
-							$subtotal += $itemSubtotal;
-
-							// Display the item details
-							echo "<tr>";
-							echo "<td class='item-cell'>";
-							echo "<img src='/images/$itemName.jpg' alt='$itemName' class='product-image' />";
-							echo "<span>$itemName</span>";
-							echo "</td>";
-							echo "<td class='price-cell'>R" . number_format($salesPrice, 2) . "</td>";
-							echo "<td class='quantity-cell'>$quantity</td>";
-							echo "</tr>";
-						}
-
-						// Calculate the VAT and total
-						$vat = $subtotal * 0.15;
-						$total = $subtotal + $vat;
-
-						// Calculate the shipping cost
-						$shipping = ($subtotal >= 1000) ? 0 : 100;
-					} else {
-						// Handle the case when the cart is empty
-						echo "<tr><td colspan='3'>Your cart is empty.</td></tr>";
-					}
-
-					// Close the database connection
-					mysqli_close($conn);
-					?>
-				</table>
-			</div>
-		</div>
-
-		<div class="order-summary">
-			<table>
-				<tr>
-					<td>Subtotal:</td>
-					<td>R<?php echo number_format($subtotal * 0.85, 2); ?></td>
-				</tr>
-				<tr>
-					<td>VAT (15%):</td>
-					<td>R<?php echo number_format($vat, 2); ?></td>
-				</tr>
-				<tr>
-					<td>Shipping:</td>
-					<td>R<?php echo number_format($shipping, 2); ?></td>
-				</tr>
-				<tr class="total-row">
-					<td>Total:</td>
-					<td>R<?php echo number_format($total, 2); ?></td>
-				</tr>
-			</table>
-		</div>
-	</div>
-
+	</section>
 	<?php include_once "../includes/footer.php"; ?>
+
 </body>
 
 </html>
