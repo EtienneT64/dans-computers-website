@@ -30,7 +30,7 @@ if (session_status() === PHP_SESSION_NONE) {
 		<?php
 		if (isset($_SESSION['UserID'])) {
 			// User is logged in, show the username
-			echo '<span class="username">' . $_SESSION['Username'] . '</span>';
+			echo '<a href="/includes/admin.php">' . $_SESSION['Username'] .  '</a>';
 		} else {
 			// User is not logged in, show the Sign Up link
 			echo '<a href="/src/signup.php">Sign Up</a>';

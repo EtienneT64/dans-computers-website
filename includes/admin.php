@@ -1,12 +1,14 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 ?>
 
 <?php
 // Check if the admin session variable is not set
 if (!isset($_SESSION["admin"])) {
 	// Redirect to the login form or another appropriate page
-	header("Location: /src/index.php");
+	header("Location: /src/account.php");
 	exit;
 }
 ?>
