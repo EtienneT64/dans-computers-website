@@ -58,7 +58,7 @@ if (!isset($_SESSION['UserID'])) {
 				<p>Payment Method: Credit Card</p>
 				<p>Card Number: ************1234</p>
 				<p>Expiration Date: 12/2024</p>
-				<p>Billing Address: 22 Firgrove, Cape Town, South Afric</p>
+				<p>Billing Address: 22 Firgrove, Cape Town, South Africa</p>
 			</div>
 		</div>
 
@@ -74,14 +74,14 @@ if (!isset($_SESSION['UserID'])) {
 					// Retrieve cart items for the logged-in user
 					$userID = $_SESSION['UserID'];
 					$sql = "SELECT items.Name, user_cart.Quantity
-        FROM user_cart
-        INNER JOIN items ON user_cart.ItemID = items.ItemID
-        WHERE user_cart.UserID = $userID";
+							FROM user_cart
+							INNER JOIN items ON user_cart.ItemID = items.ItemID
+							WHERE user_cart.UserID = $userID";
 
 					$result = mysqli_query($conn, $sql);
 
 					// Check if the query was successful
-					if ($result) {
+					if ($result && mysqli_num_rows($result) > 0) {
 						// Iterate over the cart items and display them
 						while ($row = mysqli_fetch_assoc($result)) {
 							$itemName = $row['Name'];
@@ -97,8 +97,8 @@ if (!isset($_SESSION['UserID'])) {
 							echo "</tr>";
 						}
 					} else {
-						// Handle the error if the query fails
-						echo "Error: " . mysqli_error($conn);
+						// Handle the case when the cart is empty
+						echo "<tr><td colspan='2'>Your cart is empty.</td></tr>";
 					}
 
 					// Close the database connection
