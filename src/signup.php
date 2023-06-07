@@ -1,5 +1,4 @@
 <?php
-// Import the dbh.inc.php file
 require_once("../includes/connection.php");
 ?>
 
@@ -42,7 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// If there are no errors, process the form
 	if (empty($errors)) {
-		// Process the form (e.g., save data to database)
 		// Hash the password
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -56,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$stmt->close();
 		$conn->close();
 
-		// Redirect to a success page
 		header("Location: /src/index.php");
 		exit();
 	}
