@@ -68,6 +68,7 @@ if (!isset($_SESSION['UserID'])) {
 				<table>
 					<tr>
 						<th>Item</th>
+						<th>Price</th>
 						<th>Quantity</th>
 					</tr>
 					<?php
@@ -101,6 +102,7 @@ if (!isset($_SESSION['UserID'])) {
 							echo "<img src='/images/$itemName.jpg' alt='$itemName' class='product-image' />";
 							echo "<span>$itemName</span>";
 							echo "</td>";
+							echo "<td class='price-cell'>R" . number_format($salesPrice, 2) . "</td>";
 							echo "<td class='quantity-cell'>$quantity</td>";
 							echo "</tr>";
 						}
@@ -113,7 +115,7 @@ if (!isset($_SESSION['UserID'])) {
 						$shipping = ($subtotal >= 1000) ? 0 : 100;
 					} else {
 						// Handle the case when the cart is empty
-						echo "<tr><td colspan='2'>Your cart is empty.</td></tr>";
+						echo "<tr><td colspan='3'>Your cart is empty.</td></tr>";
 					}
 
 					// Close the database connection
@@ -149,4 +151,3 @@ if (!isset($_SESSION['UserID'])) {
 </body>
 
 </html>
-

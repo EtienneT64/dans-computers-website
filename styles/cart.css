@@ -69,3 +69,30 @@ h2 {
 .quantity-cell {
 	text-align: center;
 }
+
+/* Updated CSS for table alignment */
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	padding: 10px;
+	text-align: left;
+}
+
+th {
+	font-weight: bold;
+}
+
+td {
+	border-bottom: 1px solid #ccc;
+}
+
+/* Equal spacing between fields */
+td.item-cell {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
