@@ -81,7 +81,7 @@ if (session_status() === PHP_SESSION_NONE) {
 			<ul class="products">
 				<li class="product-card" data-itemid="4">
 					<div class="product-card-image">
-						<img src="/images/deal1.jpg" alt="ASUS ROG MAXIMUS XII" />
+						<img src="/images/ASUS ROG MAXIMUS XII HERO WIFI.jpg" alt="ASUS ROG MAXIMUS XII" />
 					</div>
 					<div class="product-card-info">
 						<h3 class="product-card-title">ASUS ROG MAXIMUS XII HERO WIFI</h3>
@@ -100,7 +100,7 @@ if (session_status() === PHP_SESSION_NONE) {
 				</li>
 				<li class="product-card" data-itemid="5">
 					<div class="product-card-image">
-						<img src="/images/deal2.jpg" alt="Product 2" />
+						<img src="/images/G.Skill Trident Z5 NEO RGB 32GB.jpg" alt="Product 2" />
 					</div>
 					<div class="product-card-info">
 						<h3 class="product-card-title">G.Skill Trident Z5 NEO RGB 32GB</h3>
@@ -121,7 +121,7 @@ if (session_status() === PHP_SESSION_NONE) {
 				</li>
 				<li class="product-card" data-itemid="6">
 					<div class="product-card-image">
-						<img src="/images/deal3.jpg" alt="Product 3" />
+						<img src="/images/Fractal Design Torrent White Steel.jpg" alt="Product 3" />
 					</div>
 					<div class="product-card-info">
 						<h3 class="product-card-title">Fractal Design Torrent White Steel</h3>

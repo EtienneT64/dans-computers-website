@@ -70,27 +70,40 @@ if (!isset($_SESSION['UserID'])) {
 						<th>Item</th>
 						<th>Quantity</th>
 					</tr>
-					<tr>
-						<td class="item-cell">
-							<img src="/images/win1.jpg" alt="Product A" class="product-image" />
-							<span>Product A</span>
-						</td>
-						<td class="quantity-cell">2</td>
-					</tr>
-					<tr>
-						<td class="item-cell">
-							<img src="/images/win2.jpg" alt="Product B" class="product-image" />
-							<span>Product B</span>
-						</td>
-						<td class="quantity-cell">1</td>
-					</tr>
-					<tr>
-						<td class="item-cell">
-							<img src="/images/win3.jpg" alt="Product C" class="product-image" />
-							<span>Product C</span>
-						</td>
-						<td class="quantity-cell">3</td>
-					</tr>
+					<?php
+					// Retrieve cart items for the logged-in user
+					$userID = $_SESSION['UserID'];
+					$sql = "SELECT items.Name, user_cart.Quantity
+        FROM user_cart
+        INNER JOIN items ON user_cart.ItemID = items.ItemID
+        WHERE user_cart.UserID = $userID";
+
+					$result = mysqli_query($conn, $sql);
+
+					// Check if the query was successful
+					if ($result) {
+						// Iterate over the cart items and display them
+						while ($row = mysqli_fetch_assoc($result)) {
+							$itemName = $row['Name'];
+							$quantity = $row['Quantity'];
+
+							// Display the item details
+							echo "<tr>";
+							echo "<td class='item-cell'>";
+							echo "<img src='/images/$itemName.jpg' alt='$itemName' class='product-image' />";
+							echo "<span>$itemName</span>";
+							echo "</td>";
+							echo "<td class='quantity-cell'>$quantity</td>";
+							echo "</tr>";
+						}
+					} else {
+						// Handle the error if the query fails
+						echo "Error: " . mysqli_error($conn);
+					}
+
+					// Close the database connection
+					mysqli_close($conn);
+					?>
 				</table>
 			</div>
 		</div>

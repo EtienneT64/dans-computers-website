@@ -117,7 +117,7 @@ if (session_status() === PHP_SESSION_NONE) {
 			<button class="hero-button">Add to Cart</button>
 		</div>
 		<div>
-			<img src="/images/deal1.jpg" alt="Deal of the day" class="hero_image" />
+			<img src="/images/ASUS ROG MAXIMUS XII HERO WIFI.jpg" alt="Deal of the day" class="hero_image" />
 		</div>
 	</section>
 
@@ -127,7 +127,7 @@ if (session_status() === PHP_SESSION_NONE) {
 			<ul class="products">
 				<li class="product-card" data-itemid="1">
 					<div class="product-card-image">
-						<img src="/images/product1.jpg" alt="Ryzen 5 5600" />
+						<img src="/images/Ryzen 5 5600.jpg" alt="Ryzen 5 5600" />
 					</div>
 					<div class="product-card-info">
 						<h3 class="product-card-title">Ryzen 5 5600</h3>
@@ -143,7 +143,7 @@ if (session_status() === PHP_SESSION_NONE) {
 				</li>
 				<li class="product-card" data-itemid="2">
 					<div class="product-card-image">
-						<img src="/images/product2.jpg" alt="ASUS RTX 3070 TUF Gaming" />
+						<img src="/images/ASUS RTX 3070 TUF Gaming.jpg" alt="ASUS RTX 3070 TUF Gaming" />
 					</div>
 					<div class="product-card-info">
 						<h3 class="product-card-title">ASUS RTX 3070 TUF Gaming</h3>
@@ -160,7 +160,7 @@ if (session_status() === PHP_SESSION_NONE) {
 				</li>
 				<li class="product-card" data-itemid="3">
 					<div class="product-card-image">
-						<img src="/images/product3.jpg" alt="Alienware AW3423DW" />
+						<img src="/images/Alienware AW3423DW.jpg" alt="Alienware AW3423DW" />
 					</div>
 					<div class="product-card-info">
 						<h3 class="product-card-title">Alienware AW3423DW</h3>
