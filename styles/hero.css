@@ -34,6 +34,10 @@
 	cursor: pointer;
 }
 
+.hero button:hover {
+	background-color: #0056b3;
+}
+
 .hero h3 {
 	font-size: 24px;
 	color: #000000;

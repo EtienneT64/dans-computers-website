@@ -17,6 +17,55 @@ if (session_status() === PHP_SESSION_NONE) {
 	<link rel="stylesheet" type="text/css" href="/styles/hero.css" />
 	<link rel="stylesheet" type="text/css" href="/styles/mostpopular.css" />
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- Include your custom JavaScript file -->
+	<script>
+		$(document).ready(function() {
+			// Add click event listener to all "Add to Cart" buttons
+			$(".product-card-button").on("click", function() {
+				// Check if the user is logged in
+				if (loggedIn()) {
+					// Get the item ID from the parent list item
+					var itemID = $(this).closest(".product-card").data("itemid");
+
+					// Send AJAX request to add the item to the cart
+					$.ajax({
+						type: "POST",
+						url: "/includes/add-to-cart.php",
+						data: {
+							itemID: itemID
+						},
+						success: function(response) {
+							// Handle the response from the server
+							if (response === "Success") {
+								// Item added to cart successfully
+								alert("Item added to cart!");
+							} else {
+								// Error handling if needed
+								alert("Failed to add item to cart. Please try again.");
+							}
+						},
+						error: function() {
+							// Error handling if AJAX request fails
+							alert("An error occurred. Please try again.");
+						}
+					});
+				} else {
+					// User is not logged in, redirect to the account page or login page
+					window.location.href = "/src/account.php";
+				}
+			});
+
+			// Function to check if the user is logged in
+			function loggedIn() {
+				// Add your logic to check if the user is logged in
+				// For example, you can check if a session variable is set
+				return <?php echo isset($_SESSION['UserID']) ? 'true' : 'false'; ?>;
+			}
+		});
+	</script>
+
 	<title>Dans Computers / Sales</title>
 </head>
 
@@ -30,7 +79,7 @@ if (session_status() === PHP_SESSION_NONE) {
 				Sale valid until tonight 23:59
 			</h3>
 			<ul class="products">
-				<li class="product-card">
+				<li class="product-card" data-itemid="4">
 					<div class="product-card-image">
 						<img src="/images/deal1.jpg" alt="ASUS ROG MAXIMUS XII" />
 					</div>
@@ -49,7 +98,7 @@ if (session_status() === PHP_SESSION_NONE) {
 						<button class="product-card-button">Add to Cart</button>
 					</div>
 				</li>
-				<li class="product-card">
+				<li class="product-card" data-itemid="5">
 					<div class="product-card-image">
 						<img src="/images/deal2.jpg" alt="Product 2" />
 					</div>
@@ -70,7 +119,7 @@ if (session_status() === PHP_SESSION_NONE) {
 						<button class="product-card-button">Add to Cart</button>
 					</div>
 				</li>
-				<li class="product-card">
+				<li class="product-card" data-itemid="6">
 					<div class="product-card-image">
 						<img src="/images/deal3.jpg" alt="Product 3" />
 					</div>
@@ -144,10 +193,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 	<?php include_once "../includes/footer.php"; ?>
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	<!-- Include your custom JavaScript file -->
-	<script src="/scripts/add-to-cart.js"></script>
 
 </body>
 

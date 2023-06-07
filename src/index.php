@@ -1,4 +1,6 @@
 <?php
+require_once("../includes/connection.php");
+
 if (session_status() === PHP_SESSION_NONE) {
 	session_start();
 }
@@ -14,6 +16,52 @@ if (session_status() === PHP_SESSION_NONE) {
 
 	<link rel="stylesheet" type="text/css" href="/styles/hero.css" />
 	<link rel="stylesheet" type="text/css" href="/styles/mostpopular.css" />
+
+	<script>
+		$(document).ready(function() {
+			// Add click event listener to all "Add to Cart" buttons
+			$(".product-card-button").on("click", function() {
+				// Check if the user is logged in
+				if (loggedIn()) {
+					// Get the item ID from the parent list item
+					var itemID = $(this).closest(".product-card").data("itemid");
+
+					// Send AJAX request to add the item to the cart
+					$.ajax({
+						type: "POST",
+						url: "/includes/add-to-cart.php",
+						data: {
+							itemID: itemID
+						},
+						success: function(response) {
+							// Handle the response from the server
+							if (response === "Success") {
+								// Item added to cart successfully
+								alert("Item added to cart!");
+							} else {
+								// Error handling if needed
+								alert("Failed to add item to cart. Please try again.");
+							}
+						},
+						error: function() {
+							// Error handling if AJAX request fails
+							alert("An error occurred. Please try again.");
+						}
+					});
+				} else {
+					// User is not logged in, redirect to the account page or login page
+					window.location.href = "/src/account.php";
+				}
+			});
+
+			// Function to check if the user is logged in
+			function loggedIn() {
+				// Add your logic to check if the user is logged in
+				// For example, you can check if a session variable is set
+				return <?php echo isset($_SESSION['UserID']) ? 'true' : 'false'; ?>;
+			}
+		});
+	</script>
 
 	<title>Dans Computers / Home</title>
 </head>
@@ -41,9 +89,9 @@ if (session_status() === PHP_SESSION_NONE) {
 		<div class="mostpopular-content">
 			<h2 class="mostpopular-content-headers">Most popular</h2>
 			<ul class="products">
-				<li class="product-card">
+				<li class="product-card" data-itemid="1">
 					<div class="product-card-image">
-						<img src="/images/product1.jpg" alt="Ryzen CPU" />
+						<img src="/images/product1.jpg" alt="Ryzen 5 5600" />
 					</div>
 					<div class="product-card-info">
 						<h3 class="product-card-title">Ryzen 5 5600</h3>
@@ -57,9 +105,9 @@ if (session_status() === PHP_SESSION_NONE) {
 						<button class="product-card-button">Add to Cart</button>
 					</div>
 				</li>
-				<li class="product-card">
+				<li class="product-card" data-itemid="2">
 					<div class="product-card-image">
-						<img src="/images/product2.jpg" alt="RTX GPU" />
+						<img src="/images/product2.jpg" alt="ASUS RTX 3070 TUF Gaming" />
 					</div>
 					<div class="product-card-info">
 						<h3 class="product-card-title">ASUS RTX 3070 TUF Gaming</h3>
@@ -74,9 +122,9 @@ if (session_status() === PHP_SESSION_NONE) {
 						<button class="product-card-button">Add to Cart</button>
 					</div>
 				</li>
-				<li class="product-card">
+				<li class="product-card" data-itemid="3">
 					<div class="product-card-image">
-						<img src="/images/product3.jpg" alt="OLED Monitor" />
+						<img src="/images/product3.jpg" alt="Alienware AW3423DW" />
 					</div>
 					<div class="product-card-info">
 						<h3 class="product-card-title">Alienware AW3423DW</h3>
