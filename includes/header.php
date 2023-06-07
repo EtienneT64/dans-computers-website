@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <head>
 	<link rel="stylesheet" type="text/css" href="/styles/header.css" />
 </head>
@@ -18,8 +22,18 @@
 	</div>
 
 	<div class="nav_actions">
-		<a href="/src/cart.php" class="nav_inner-end"><img src="/svg/shopping-cart-outline-svgrepo-com.svg" alt="Shopping cart" class="header_svg-cart" /></a>
-		<a href="/src/signup.php">Sign Up</a>
+		<a href="/src/cart.php" class="nav_inner-end">
+			<img src="/svg/shopping-cart-outline-svgrepo-com.svg" alt="Shopping cart" class="header_svg-cart" />
+		</a>
+		<?php
+		if (isset($_SESSION['UserID'])) {
+			// User is logged in, show the username
+			echo '<span class="username">' . $_SESSION['Username'] . '</span>';
+		} else {
+			// User is not logged in, show the Sign Up link
+			echo '<a href="/src/signup.php">Sign Up</a>';
+		}
+		?>
 	</div>
 
 	<div class="menu-dropdown">
