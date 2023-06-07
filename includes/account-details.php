@@ -1,3 +1,9 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+};
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,10 +25,10 @@
 			<h2>My Account</h2>
 			<div class="account-details">
 				<label for="name">Name:</label>
-				<p id="name">Larry Low</p>
+				<p id="name"><?php echo isset($_SESSION['Username']) ? $_SESSION['Username'] : 'Guest'; ?></p>
 
 				<label for="email">Email:</label>
-				<p id="email">larrylow@gmail.com</p>
+				<p id="email"><?php echo isset($_SESSION['Email']) ? $_SESSION['Email'] : ''; ?></p>
 			</div>
 			<div class="logout-link">
 				<a href="/includes/logout.php">Logout</a>
