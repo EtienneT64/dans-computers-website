@@ -4,6 +4,7 @@ require_once("../includes/connection.php");
 if (session_status() === PHP_SESSION_NONE) {
 	session_start();
 }
+
 // Retrieve cart items for the logged-in user
 $userID = $_SESSION['UserID'];
 $sql = "SELECT items.ItemID, items.Name, items.SalesPrice, user_cart.Quantity
@@ -12,7 +13,6 @@ $sql = "SELECT items.ItemID, items.Name, items.SalesPrice, user_cart.Quantity
         WHERE user_cart.UserID = $userID";
 
 $result = mysqli_query($conn, $sql);
-$_SESSION['cart'] = $result;
 
 // Check if the query was successful
 if ($result && mysqli_num_rows($result) > 0) {
@@ -56,3 +56,41 @@ if ($result && mysqli_num_rows($result) > 0) {
 	$vat = 0;
 	$shipping = 0;
 }
+
+$_SESSION['cart'] = $result;
+?>
+
+
+
+<!-- Your HTML code -->
+
+<script>
+	// ...
+
+	// Function to handle the checkout process
+	function checkout() {
+		// Check if the cart is empty
+		if (<?php echo ($subtotal > 0) ? 'true' : 'false'; ?>) {
+			// Clear the cart in the database
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "../includes/clear-cart.php", true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					// Display a success message
+					alert("Thank you for your purchase!");
+
+					// Optionally, you can redirect the user to a confirmation page or perform any other necessary actions
+
+					// Reload the page to update the cart
+					location.reload();
+				}
+			};
+			xhr.send();
+
+		} else {
+			// Display an alert for an empty cart
+			alert("Your cart is empty.");
+		}
+	}
+</script>

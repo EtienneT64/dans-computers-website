@@ -132,11 +132,22 @@ if (!isset($_SESSION['UserID'])) {
 		function checkout() {
 			// Check if the cart is empty
 			if (<?php echo ($subtotal > 0) ? 'true' : 'false'; ?>) {
+				// Clear the cart
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", "../includes/clear-cart.php", true);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState === 4 && xhr.status === 200) {
+						// Display a success message
+						alert("Thank you for your purchase!");
 
-				alert("Thank you for your purchase!");
+						// Optionally, you can redirect the user to a confirmation page or perform any other necessary actions
 
-				// Optionally, you can redirect the user to a confirmation page or perform any other necessary actions
-
+						// Reload the page to update the cart
+						location.reload();
+					}
+				};
+				xhr.send();
 
 			} else {
 				// Display an alert for an empty cart
