@@ -21,9 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// If there are no errors, process the form
 	if (empty($errors)) {
-		// Authenticate user against the database
-		// Assuming you have a users table in your database with email and hashed_password columns
-
 		// Prepare and execute the query to fetch the user by email
 		$query = "SELECT * FROM users WHERE Email = ?";
 		$stmt = $conn->prepare($query);
@@ -43,14 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					$_SESSION["admin"] = true;
 				}
 
-				// Redirect to a success page or perform further actions
 				// Set the session variables
-				$_SESSION['UserID'] = $row['UserID']; // Example: Store the user ID
-				$_SESSION['Username'] = $row['Username']; // Example: Store the username
-				$_SESSION['Email'] = $row['Email']; // Example: Store the username
+				$_SESSION['UserID'] = $row['UserID'];
+				$_SESSION['Username'] = $row['Username'];
+				$_SESSION['Email'] = $row['Email'];
 
-
-				// Example: Redirect to homepage
+				// Redirect to admin file to process if user is an admin or not
 				header("Location: ../includes/admin.php");
 				exit();
 			} else {
