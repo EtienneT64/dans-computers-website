@@ -56,15 +56,6 @@ input[type='submit'],
 	background-color: #45a049;
 }
 
-.btn-update {
-	background-color: #007bff;
-	color: white;
-}
-
-.btn-update:hover {
-	background-color: #0069d9;
-}
-
 .btn-delete,
 .delete-button {
 	background-color: #f44336;
@@ -96,8 +87,4 @@ table th {
 	display: flex;
 	justify-content: space-between;
 	margin-top: 10px;
-}
-
-.btn-update {
-	margin-right: 5px;
 }
