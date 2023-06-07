@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	<link rel="stylesheet" type="text/css" href="/styles/signup.css" />
 
-	<script defer src="/scripts/signup.js"></script>
+	<script defer src="../scripts/signup.js"></script>
 
 	<title>Dans Computers / Sign-up</title>
 </head>

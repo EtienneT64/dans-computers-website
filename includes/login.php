@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 				// Example: Redirect to homepage
-				header("Location: /includes/admin.php");
+				header("Location: ../includes/admin.php");
 				exit();
 			} else {
 				$errors[] = "Invalid email or password.";

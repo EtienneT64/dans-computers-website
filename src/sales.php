@@ -32,7 +32,7 @@ if (session_status() === PHP_SESSION_NONE) {
 					// Send AJAX request to add the item to the cart
 					$.ajax({
 						type: "POST",
-						url: "/includes/add-to-cart.php",
+						url: "../includes/add-to-cart.php",
 						data: {
 							itemID: itemID
 						},
