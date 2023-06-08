@@ -125,7 +125,7 @@ if (session_status() === PHP_SESSION_NONE) {
 							- Clear Tempered Glass Panel
 							- Full-Tower Form Factor
 						</p>
-						<h3>
+						<h3 class="item-price">
 							<span class="old-price">R5,000.00</span>
 							<span class="sale-price">R3,999.00</span>
 						</h3>
