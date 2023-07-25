@@ -2,4 +2,4 @@
 
 Link to website: http://danscomputers.infinityfreeapp.com/
 
-View Dans Computers User Manual.pdf for more information.
+View 'Dans Computers User Manual.pdf' for more information.
