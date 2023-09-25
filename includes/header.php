@@ -5,7 +5,6 @@ if (session_status() === PHP_SESSION_NONE) {
 ?>
 
 <head>
-	<link rel="icon" href="/images/favicon.png" type="image/png">
 	<link rel="stylesheet" type="text/css" href="/styles/header.css" />
 </head>
 
