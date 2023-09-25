@@ -17,9 +17,8 @@ following:
 
 ## Home Page
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/F027qIB" data-context="false" ><a href="//imgur.com/a/F027qIB">Dans Computers Home Page</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+<img src="https://imgur.com/a/F027qIB" alt="Home Page" />
 
 ## Access the website
 
 - Link: https://danscomputers.infinityfreeapp.com/
-
