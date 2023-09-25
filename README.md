@@ -19,6 +19,18 @@ following:
 
 <img src="https://i.imgur.com/XyRmHfK.png" alt="Home Page" />
 
+## Sales Page
+
+<img src="https://i.imgur.com/Edkra1D.png" alt="Sales Page" />
+
+## Cart Page
+
+<img src="https://imgur.com/WLqOiNy" alt="Cart Page" />
+
+## Admin Page
+
+<img src="https://i.imgur.com/m2ml9SU.png" alt="Admin Page" />
+
 ## Access the website
 
 - Link: https://danscomputers.infinityfreeapp.com/
