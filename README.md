@@ -25,7 +25,7 @@ following:
 
 ## Cart Page
 
-<img src="https://imgur.com/WLqOiNy" alt="Cart Page" />
+<img src="https://i.imgur.com/WLqOiNy.png" alt="Cart Page" />
 
 ## Admin Page
 
