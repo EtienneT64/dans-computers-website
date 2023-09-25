@@ -17,7 +17,7 @@ following:
 
 ## Home Page
 
-<img src="https://imgur.com/a/F027qIB" alt="Home Page" />
+<img src="https://i.imgur.com/XyRmHfK.png" alt="Home Page" />
 
 ## Access the website
 
